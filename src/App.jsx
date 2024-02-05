@@ -6,7 +6,6 @@ import CakeContainer from "./components/cakeContainer";
 function App() {
   return (
     <Provider store={store}>
-      <div>Redux demo</div>
       <CakeContainer />
     </Provider>
   );
