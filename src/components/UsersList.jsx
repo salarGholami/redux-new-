@@ -4,12 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 
 function UsersList() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.users);
-  console.log(state);
+  const { loading, error, data } = useSelector((state) => state.users);
+
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-  return <div>UsersList</div>;
+
+  if (loading) return <p>loading ...</p>;
+  if (error) return <p>{error}</p>;
+  return data.map((user) => <li key={user.id}>{user.name}</li>);
+  
+  // return (
+  //   <div>
+  //     <h2>UsersList</h2>
+  //     {loading ? (
+  //       <p>loading</p>
+  //     ) : error ? (
+  //       <p>{error}</p>
+  //     ) : (
+  //       <div>
+  //         {data && data.map((user) => <li key={user.id}>{user.name}</li>)}
+  //       </div>
+  //     )}
+  //   </div>
+  // );
 }
 
 export default UsersList;

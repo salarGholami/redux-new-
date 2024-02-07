@@ -23,7 +23,7 @@ function fetchUsersSuccess(users) {
 function fetchUsersFailure(error) {
   return {
     type: FETCH_USERS_FAILURE,
-    payload: error,
+    payload: error.message,
   };
 }
 
